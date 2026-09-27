@@ -1,0 +1,7 @@
+node_modules/
+packages/*/dist/
+dist-tests/
+*.tgz
+.env
+.DS_Store
+coverage/

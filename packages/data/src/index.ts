@@ -1,0 +1,6 @@
+export interface TimePoint<T>{at:Date;value:T;}
+export class RingBuffer<T>{private readonly data:T[]=[];constructor(readonly capacity=1024){if(!Number.isInteger(capacity)||capacity<1)throw new Error("capacity must be >=1");}push(value:T):void{this.data.push(value);if(this.data.length>this.capacity)this.data.shift();}values():T[]{return[...this.data];}get size():number{return this.data.length;}clear():void{this.data.length=0;}}
+export function movingAverage(points:TimePoint<number>[],window:number):TimePoint<number>[]{if(window<1)throw new Error("window must be >=1");return points.map((p,i)=>{const s=points.slice(Math.max(0,i-window+1),i+1);return{at:new Date(p.at),value:s.reduce((a,b)=>a+b.value,0)/s.length};});}
+export function ratePerSecond(points:TimePoint<number>[]):TimePoint<number>[]{const out:TimePoint<number>[]=[];for(let i=1;i<points.length;i++){const a=points[i-1]!,b=points[i]!,dt=(b.at.getTime()-a.at.getTime())/1000;if(dt>0)out.push({at:new Date(b.at),value:(b.value-a.value)/dt});}return out;}
+export function dailyDataVolumeBytes(rateBps:number,dutyCycle=1):number{return Math.max(0,rateBps/8*86400*Math.min(1,Math.max(0,dutyCycle)));}
+export class DataModule{movingAverage=movingAverage;ratePerSecond=ratePerSecond;dailyDataVolumeBytes=dailyDataVolumeBytes;ringBuffer<T>(capacity?:number){return new RingBuffer<T>(capacity);}}

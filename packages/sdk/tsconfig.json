@@ -1,0 +1,99 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist"
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "references": [
+    {
+      "path": "../core"
+    },
+    {
+      "path": "../geo"
+    },
+    {
+      "path": "../uncertainty"
+    },
+    {
+      "path": "../terrain"
+    },
+    {
+      "path": "../space"
+    },
+    {
+      "path": "../eo"
+    },
+    {
+      "path": "../environment"
+    },
+    {
+      "path": "../sensors"
+    },
+    {
+      "path": "../fusion"
+    },
+    {
+      "path": "../comms"
+    },
+    {
+      "path": "../pnt"
+    },
+    {
+      "path": "../edge"
+    },
+    {
+      "path": "../logistics"
+    },
+    {
+      "path": "../fleet"
+    },
+    {
+      "path": "../maintenance"
+    },
+    {
+      "path": "../energy"
+    },
+    {
+      "path": "../twin"
+    },
+    {
+      "path": "../simulation"
+    },
+    {
+      "path": "../security"
+    },
+    {
+      "path": "../cyber"
+    },
+    {
+      "path": "../interoperability"
+    },
+    {
+      "path": "../ai"
+    },
+    {
+      "path": "../spectrum"
+    },
+    {
+      "path": "../audit"
+    },
+    {
+      "path": "../telemetry"
+    },
+    {
+      "path": "../validation"
+    },
+    {
+      "path": "../data"
+    },
+    {
+      "path": "../reporting"
+    },
+    {
+      "path": "../routing"
+    }
+  ]
+}

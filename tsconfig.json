@@ -1,0 +1,98 @@
+{
+  "files": [],
+  "references": [
+    {
+      "path": "./packages/core"
+    },
+    {
+      "path": "./packages/geo"
+    },
+    {
+      "path": "./packages/uncertainty"
+    },
+    {
+      "path": "./packages/terrain"
+    },
+    {
+      "path": "./packages/space"
+    },
+    {
+      "path": "./packages/eo"
+    },
+    {
+      "path": "./packages/environment"
+    },
+    {
+      "path": "./packages/sensors"
+    },
+    {
+      "path": "./packages/fusion"
+    },
+    {
+      "path": "./packages/comms"
+    },
+    {
+      "path": "./packages/pnt"
+    },
+    {
+      "path": "./packages/edge"
+    },
+    {
+      "path": "./packages/logistics"
+    },
+    {
+      "path": "./packages/fleet"
+    },
+    {
+      "path": "./packages/maintenance"
+    },
+    {
+      "path": "./packages/energy"
+    },
+    {
+      "path": "./packages/twin"
+    },
+    {
+      "path": "./packages/simulation"
+    },
+    {
+      "path": "./packages/security"
+    },
+    {
+      "path": "./packages/cyber"
+    },
+    {
+      "path": "./packages/interoperability"
+    },
+    {
+      "path": "./packages/ai"
+    },
+    {
+      "path": "./packages/spectrum"
+    },
+    {
+      "path": "./packages/audit"
+    },
+    {
+      "path": "./packages/telemetry"
+    },
+    {
+      "path": "./packages/validation"
+    },
+    {
+      "path": "./packages/data"
+    },
+    {
+      "path": "./packages/reporting"
+    },
+    {
+      "path": "./packages/routing"
+    },
+    {
+      "path": "./packages/testing"
+    },
+    {
+      "path": "./packages/sdk"
+    }
+  ]
+}

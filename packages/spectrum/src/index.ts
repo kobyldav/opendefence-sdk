@@ -1,0 +1,9 @@
+export interface SpectrumSample { frequencyHz:number; powerDbm:number; at?:Date; }
+export interface SpectrumPeak { frequencyHz:number; powerDbm:number; aboveNoiseDb:number; }
+export interface OccupancyResult { occupiedFraction:number; thresholdDbm:number; occupiedBins:number; totalBins:number; }
+function percentile(values:number[],p:number):number{if(!values.length)return NaN;const s=[...values].sort((a,b)=>a-b),x=Math.min(1,Math.max(0,p))*(s.length-1),i=Math.floor(x),j=Math.ceil(x),f=x-i;return s[i]!*(1-f)+s[j]!*f;}
+export function noiseFloorDbm(samples:SpectrumSample[],quantile=.2):number{return percentile(samples.map(s=>s.powerDbm),quantile);}
+export function occupancy(samples:SpectrumSample[],thresholdDbm:number):OccupancyResult{const occupiedBins=samples.filter(s=>s.powerDbm>=thresholdDbm).length;return{occupiedFraction:samples.length?occupiedBins/samples.length:0,thresholdDbm,occupiedBins,totalBins:samples.length};}
+export function detectPeaks(samples:SpectrumSample[],minAboveNoiseDb=10):SpectrumPeak[]{if(samples.length<3)return[];const noise=noiseFloorDbm(samples);const out:SpectrumPeak[]=[];for(let i=1;i<samples.length-1;i++){const a=samples[i-1]!,b=samples[i]!,c=samples[i+1]!;if(b.powerDbm>a.powerDbm&&b.powerDbm>=c.powerDbm&&b.powerDbm-noise>=minAboveNoiseDb)out.push({frequencyHz:b.frequencyHz,powerDbm:b.powerDbm,aboveNoiseDb:b.powerDbm-noise});}return out;}
+export function channelPowerDbm(samples:SpectrumSample[],lowHz:number,highHz:number):number|undefined{const linear=samples.filter(s=>s.frequencyHz>=lowHz&&s.frequencyHz<=highHz).map(s=>10**(s.powerDbm/10));if(!linear.length)return undefined;return 10*Math.log10(linear.reduce((a,b)=>a+b,0));}
+export class SpectrumModule{noiseFloorDbm=noiseFloorDbm;occupancy=occupancy;detectPeaks=detectPeaks;channelPowerDbm=channelPowerDbm;}

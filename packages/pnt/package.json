@@ -1,0 +1,27 @@
+{
+  "name": "@opendefence/pnt",
+  "version": "0.1.0",
+  "description": "OpenDefence SDK pnt capability package",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@opendefence/geo": "0.1.0",
+    "@opendefence/uncertainty": "0.1.0"
+  }
+}

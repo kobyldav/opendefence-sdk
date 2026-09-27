@@ -1,0 +1,9 @@
+export interface ValidationIssue{path:string;code:string;message:string;severity:"error"|"warning";}
+export interface ValidationResult<T>{valid:boolean;value?:T;issues:ValidationIssue[];}
+export type Validator<T>=(value:unknown,path?:string)=>ValidationResult<T>;
+export function ok<T>(value:T):ValidationResult<T>{return{valid:true,value,issues:[]};}
+export function fail<T>(path:string,code:string,message:string,severity:"error"|"warning"="error"):ValidationResult<T>{return{valid:severity!=="error",issues:[{path,code,message,severity}]};}
+export function finiteNumber(options:{min?:number;max?:number}={}):Validator<number>{return(value,path="$")=>{if(typeof value!=="number"||!Number.isFinite(value))return fail(path,"finite_number","Expected a finite number");if(options.min!==undefined&&value<options.min)return fail(path,"minimum",`Expected >= ${options.min}`);if(options.max!==undefined&&value>options.max)return fail(path,"maximum",`Expected <= ${options.max}`);return ok(value);};}
+export function nonEmptyString(value:unknown,path="$"):ValidationResult<string>{return typeof value==="string"&&value.trim()?ok(value):fail(path,"non_empty_string","Expected a non-empty string");}
+export function combine<T extends Record<string,unknown>>(value:unknown,shape:{[K in keyof T]:Validator<T[K]>}):ValidationResult<T>{if(!value||typeof value!=="object")return fail("$","object","Expected an object");const out:Record<string,unknown>={},issues:ValidationIssue[]=[];for(const[key,validator]of Object.entries(shape) as Array<[keyof T,Validator<T[keyof T]>]>){const r=validator((value as Record<string,unknown>)[String(key)],`$.${String(key)}`);issues.push(...r.issues);if(r.value!==undefined)out[String(key)]=r.value;}return{valid:!issues.some(i=>i.severity==="error"),value:out as T,issues};}
+export class ValidationModule{finiteNumber=finiteNumber;nonEmptyString=nonEmptyString;combine=combine;}

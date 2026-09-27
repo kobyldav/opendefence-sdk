@@ -1,0 +1,54 @@
+{
+  "name": "@opendefence/sdk",
+  "version": "0.1.0",
+  "description": "OpenDefence SDK sdk capability package",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@opendefence/core": "0.1.0",
+    "@opendefence/geo": "0.1.0",
+    "@opendefence/uncertainty": "0.1.0",
+    "@opendefence/terrain": "0.1.0",
+    "@opendefence/space": "0.1.0",
+    "@opendefence/eo": "0.1.0",
+    "@opendefence/environment": "0.1.0",
+    "@opendefence/sensors": "0.1.0",
+    "@opendefence/fusion": "0.1.0",
+    "@opendefence/comms": "0.1.0",
+    "@opendefence/pnt": "0.1.0",
+    "@opendefence/edge": "0.1.0",
+    "@opendefence/logistics": "0.1.0",
+    "@opendefence/fleet": "0.1.0",
+    "@opendefence/maintenance": "0.1.0",
+    "@opendefence/energy": "0.1.0",
+    "@opendefence/twin": "0.1.0",
+    "@opendefence/simulation": "0.1.0",
+    "@opendefence/security": "0.1.0",
+    "@opendefence/cyber": "0.1.0",
+    "@opendefence/interoperability": "0.1.0",
+    "@opendefence/ai": "0.1.0",
+    "@opendefence/spectrum": "0.1.0",
+    "@opendefence/audit": "0.1.0",
+    "@opendefence/telemetry": "0.1.0",
+    "@opendefence/validation": "0.1.0",
+    "@opendefence/data": "0.1.0",
+    "@opendefence/reporting": "0.1.0",
+    "@opendefence/routing": "0.1.0"
+  }
+}
